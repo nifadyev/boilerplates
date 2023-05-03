@@ -1,0 +1,42 @@
+services:
+  db:
+    image: postgres
+    restart: always
+    volumes:
+      - db:/var/lib/postgresql/data
+    env_file:
+      - db-with-redis.env
+
+  redis:
+    image: redis:alpine
+    restart: always
+
+  app:
+    image: nextcloud
+    restart: always
+    ports:
+      - 8080:80
+    volumes:
+      - ${HOME}/nextcloud:/var/www/html
+    env_file:
+      - db-with-redis.env
+    depends_on:
+      - db
+      - redis
+
+  # cron:
+  #   image: nextcloud:apache
+  #   restart: always
+  #   volumes:
+  #     - nextcloud:/var/www/html
+  #   entrypoint: /cron.sh
+  #   depends_on:
+  #     - db
+  #     - redis
+
+volumes:
+  db:
+  nextcloud:
+
+networks:
+  nextcloud-storage:
