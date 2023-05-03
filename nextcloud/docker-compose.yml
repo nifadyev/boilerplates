@@ -1,0 +1,33 @@
+services:
+  db:
+    image: postgres
+    container_name: postgres
+    restart: always
+    volumes:
+      - db:/var/lib/postgresql/data
+    env_file:
+      - db.env
+    networks:
+      - nextcloud-storage
+
+  app:
+    image: nextcloud
+    container_name: nextcloud
+    restart: always
+    ports:
+      - 8080:80
+    volumes:
+      - ${HOME}/nextcloud:/var/www/html
+    env_file:
+      - db.env
+    depends_on:
+      - db
+    networks:
+      - nextcloud-storage
+
+volumes:
+  db:
+  nextcloud:
+
+networks:
+  nextcloud-storage:
