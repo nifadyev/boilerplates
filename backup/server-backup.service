@@ -1,0 +1,12 @@
+[Unit]
+Description=/home Backup Script
+Wants=server-backup.timer
+
+[Service]
+Type=simple
+EnvironmentFile=<path_to_.conf_file>
+ExecStart=sh <path_to_server-backup.sh>
+User=<user>
+
+[Install]
+WantedBy=default.target

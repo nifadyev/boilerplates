@@ -1,0 +1,12 @@
+[Unit]
+Description=/home Backup Daily Job
+
+[Timer]
+# OnCalendar=daily
+# Every day at 4:00
+OnCalendar=*-*-* 4:00:00
+Persistent=true
+Unit=server-backup.service
+
+[Install]
+WantedBy=timers.target
