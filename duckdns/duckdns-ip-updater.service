@@ -1,0 +1,12 @@
+[Unit]
+Description=DuckDNS IP address daily updater
+Wants=duckdns-ip-updated.timer
+
+[Service]
+Type=simple
+EnvironmentFile=<path_to_.conf_file>
+ExecStart=sh <path_to_duckdns-ip-updater.sh>
+User=<user>
+
+[Install]
+WantedBy=default.target
