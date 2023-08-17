@@ -1,0 +1,33 @@
+media.{$MAIN_DOMAIN} {
+  reverse_proxy jellyfin:{$JELLYFIN_PORT}
+  header {
+    # HSTS
+    Strict-Transport-Security max-age=31536000
+    # Server name removing
+    -Server
+    # Prevent search engines from indexing
+    X-Robots-Tag "none"
+    # Disable clients from sniffing the media type
+    X-Content-Type-Options nosniff
+  }
+  tls {
+    dns duckdns {$DUCKDNS_TOKEN}
+  }
+}
+
+cloud.{$MAIN_DOMAIN} {
+  redir /.well-known/carddav /remote.php/dav 301
+  redir /.well-known/caldav /remote.php/dav 301
+  reverse_proxy http://{IP_ADDRESS}:{NEXTCLOUD_PORT}
+  header {
+      # HSTS
+      Strict-Transport-Security "max-age=31536000; includeSubDomains"
+      # Server name removing
+      -Server
+      # Hide PHP version
+      -X-Powered-By
+  }
+  tls {
+      dns duckdns {$DUCKDNS_TOKEN}
+  }
+}
