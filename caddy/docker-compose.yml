@@ -1,0 +1,28 @@
+services:
+  caddy:
+    build:
+        context: .
+    container_name: caddy_reverse_proxy
+    restart: unless-stopped
+    env_file: .env
+    ports:
+        # HTTP
+      - "80:80"
+        # HTTPS
+      - "443:443"
+      - "2019:2019"
+        # HTTPS/3
+      - "443:443/udp"
+    volumes:
+      - $PWD/Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  caddy_data:
+  caddy_config:
+
+networks:
+  default:
+    name: $PROXY_NETWORK
+    external: true
