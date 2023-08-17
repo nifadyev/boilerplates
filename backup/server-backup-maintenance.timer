@@ -1,0 +1,11 @@
+[Unit]
+Description=Weekly Backup Maintenance Job
+
+[Timer]
+# Every Saturday at 4:45
+OnCalendar=Sat 4:45
+Persistent=true
+Unit=server-backup-maintenance.service
+
+[Install]
+WantedBy=timers.target
