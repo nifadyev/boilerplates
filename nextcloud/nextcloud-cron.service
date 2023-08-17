@@ -1,0 +1,6 @@
+[Unit]
+Description=Nextcloud cron.php job
+
+[Service]
+User=<user>
+ExecStart=docker exec -u www-data <nextcloud_container_name> php cron.php
