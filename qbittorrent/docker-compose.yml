@@ -1,0 +1,14 @@
+services:
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:${VERSION}
+    container_name: qbittorrent
+    env_file: .env
+    volumes:
+      - ${HOME}/service-configs/qbittorrent/config:/config
+      - ${HOME}/usb_drive/Download:/downloads
+      - ${HOME}/usb_drive/media:/media
+    ports:
+      - ${CONTAINER_WEBUI_PORT}:${HOST_WEBUI_PORT}
+      - ${CONTAINER_TCP_CONNECTION_PORT}:${HOST_TCP_CONNECTION_PORT}
+      - ${CONTAINER_UDP_CONNECTION_PORT}:${HOST_UDP_CONNECTION_PORT}/udp
+    restart: unless-stopped
