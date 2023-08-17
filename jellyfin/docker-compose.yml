@@ -1,15 +1,15 @@
 services:
   jellyfin:
-    image: jellyfin/jellyfin
+    image: "jellyfin/jellyfin:${VERSION}"
     container_name: jellyfin
-    network_mode: 'host'
+    hostname: jellyfin
     volumes:
-      - ${CONFIG_PATH}:/config
-      - ${MEDIA_PATH}:/media
+      - ${HOME}/service-configs/jellyfin/config:/config
+      - ${HOME}/usb_drive/media:/media:readonly
+      - ${HOME}/.cache/jellyfin:/cache
     restart: 'unless-stopped'
-    # Optional - alternative address used for autodiscovery
-    # environment:
-     # - JELLYFIN_PublishedServerUrl=http://example.com
-    # Optional - may be necessary for docker healthcheck to pass if running in host network mode
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+
+networks:
+  default:
+    name: $PROXY_NETWORK
+    external: true
