@@ -1,0 +1,11 @@
+[Unit]
+Description=Postgres DB Container Backup Daily Job
+
+[Timer]
+# Every day at 3:45
+OnCalendar=*-*-* 3:45:00
+Persistent=true
+Unit=postgres-dbs-backup.service
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,11 @@
+[Unit]
+Description=Postgres DB Container Backup Script
+Wants=postgres-dbs-backup.timer
+
+[Service]
+Type=simple
+ExecStart=sh <path_to_postgres-dbs-backup.sh>
+User=<user>
+
+[Install]
+WantedBy=default.target
