@@ -4,8 +4,9 @@ Wants=duckdns-ip-updated.timer
 
 [Service]
 Type=simple
+LoadCredential=token:<path_to_duckdns_token_txt>
 EnvironmentFile=<path_to_.conf_file>
-ExecStart=sh <path_to_duckdns-ip-updater.sh>
+ExecStart=/bin/bash -c 'TOKEN="$(cat ${CREDENTIALS_DIRECTORY}/token)" <path_to_duckdns-ip-updater.sh>'
 DynamicUser=yes
 NoNewPrivileges=yes
 ProtectSystem=full
