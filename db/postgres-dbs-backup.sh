@@ -19,9 +19,8 @@ for i in $CONTAINERS; do
     pg_dump --username $POSTGRES_USER $POSTGRES_DB \
     | gzip > $BACKUPDIR/$i-$POSTGRES_DB-$(date +"%Y%m%d%H%M").sql.gz
 
-    # ! Not useful for now
-    # OLD_BACKUPS=$(ls -1 $BACKUPDIR/$i*.gz |wc -l)
-    # if [ $OLD_BACKUPS -gt $DAYS ]; then
-    #     find $BACKUPDIR -name "$i*.gz" -daystart -mtime +$DAYS -delete
-    # fi
+    OLD_BACKUPS=$(ls -1 $BACKUPDIR/$i*.gz |wc -l)
+    if [ $OLD_BACKUPS -gt $KEEP_LAST ]; then
+        find $BACKUPDIR -name "$i*.gz" -daystart -mtime +$KEEP_LAST -delete
+    fi
 done
