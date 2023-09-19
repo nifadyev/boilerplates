@@ -1,0 +1,12 @@
+[Unit]
+Description=/home Daily Job
+
+[Timer]
+# OnCalendar=daily
+# Every day at 17:30
+OnCalendar=*-*-* 17:30:00
+Persistent=true
+Unit=laptop-linux-backup.service
+
+[Install]
+WantedBy=timers.target

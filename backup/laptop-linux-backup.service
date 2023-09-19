@@ -1,0 +1,14 @@
+[Unit]
+Description=/home Backup Script
+Wants=laptop-linux-backup.timer
+
+[Service]
+Type=simple
+LoadCredential=backup_repo_password:<path_to_repo_password_txt>
+EnvironmentFile=<path_to_.conf_file>
+ExecStart=/bin/bash -c 'RESTIC_PASSWORD="$(cat ${CREDENTIALS_DIRECTORY}/backup_repo_password)" <path_to_laptop-linux-backup.sh>'
+NoNewPrivileges=yes
+ProtectSystem=full
+
+[Install]
+WantedBy=default.target
