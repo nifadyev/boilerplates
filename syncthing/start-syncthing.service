@@ -1,0 +1,12 @@
+[Unit]
+Description=Run Syncthing server for specified period of time
+Wants=start-syncthing.timer
+
+[Service]
+# Type=oneshot
+RuntimeMaxSec=120
+Type=simple
+ExecStart=syncthing serve --no-browser
+
+[Install]
+WantedBy=default.target

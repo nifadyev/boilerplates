@@ -1,0 +1,11 @@
+[Unit]
+Description=Periodic Syncthing Server Job to start Server
+
+[Timer]
+# Every 15 minutes
+OnCalendar=*:0/15
+Persistent=true
+Unit=start-syncthing.service
+
+[Install]
+WantedBy=timers.target
