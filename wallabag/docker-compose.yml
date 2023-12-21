@@ -1,0 +1,12 @@
+services:
+  wallabag:
+    image: wallabag/wallabag:${VERSION}
+    container_name: wallabag
+    env_file: .env
+    volumes:
+      - ~/.wallabag/images:/var/www/wallabag/web/assets/images
+      - ~/.wallabag/data:/var/www/wallabag/data"
+    ports:
+      - "${PORT}:80"
+
+    restart: unless-stopped
