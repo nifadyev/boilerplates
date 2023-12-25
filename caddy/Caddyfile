@@ -31,3 +31,44 @@ cloud.{$MAIN_DOMAIN} {
       dns duckdns {$DUCKDNS_TOKEN}
   }
 }
+
+password-manager.{$MAIN_DOMAIN} {
+  reverse_proxy vaultwarden:{$VAULTWARDEN_PORT}
+
+  header {
+    # Enable HTTP Strict Transport Security (HSTS)
+    Strict-Transport-Security "max-age=31536000;"
+    # Disable cross-site filter (XSS)
+    X-XSS-Protection "0"
+    # Disallow the site to be rendered within a frame (clickjacking protection)
+    X-Frame-Options "DENY"
+    # Prevent search engines from indexing (optional)
+    X-Robots-Tag "noindex, nofollow"
+    # Disallow sniffing of X-Content-Type-Options
+    X-Content-Type-Options "nosniff"
+    # Server name removing
+    -Server
+    # Remove X-Powered-By though this shouldn't be an issue, better opsec to remove
+    -X-Powered-By
+    # Remove Last-Modified because etag is the same and is as effective
+    -Last-Modified
+  }
+
+  # This setting may have compatibility issues with some browsers
+  # (e.g., attachment downloading on Firefox). Try disabling this
+  # if you encounter issues.
+  encode gzip
+
+  tls {
+    dns duckdns {$DUCKDNS_TOKEN}
+  }
+
+#  log {
+#    level INFO
+#    output file {$LOG_FILE} {
+#      roll_size 10MB
+#      roll_keep 10
+#    }
+#  }
+}
+
