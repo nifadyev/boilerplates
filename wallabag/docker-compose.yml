@@ -2,6 +2,7 @@ services:
   wallabag:
     image: wallabag/wallabag:${VERSION}
     container_name: wallabag
+    hostname: wallabag
     env_file: .env
     volumes:
       - ~/.wallabag/images:/var/www/wallabag/web/assets/images
@@ -10,3 +11,9 @@ services:
       - "${PORT}:80"
 
     restart: unless-stopped
+
+
+networks:
+  default:
+    name: $PROXY_NETWORK
+    external: true
