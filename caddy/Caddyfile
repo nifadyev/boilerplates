@@ -72,10 +72,4 @@ password-manager.{$MAIN_DOMAIN} {
 #  }
 }
 
-readlater.{$MAIN_DOMAIN} {
-  reverse_proxy wallabag:{$WALLABAG_INTERNAL_PORT}
-
-  tls {
-    dns duckdns {$DUCKDNS_TOKEN}
-  }
-}
+import Caddyfiles/wallabag.Caddyfile
