@@ -5,13 +5,15 @@ services:
     hostname: wallabag
     env_file: .env
     volumes:
-      - ~/.wallabag/images:/var/www/wallabag/web/assets/images
-      - ~/.wallabag/data:/var/www/wallabag/data"
+      - images:/var/www/wallabag/web/assets/images
+      - data:/var/www/wallabag/data
     ports:
-      - "${PORT}:80"
+      - "${EXTERNAL_PORT}:${INTERNAL_PORT}"
+    restart: always
 
-    restart: unless-stopped
-
+volumes:
+  data:
+  images:
 
 networks:
   default:
