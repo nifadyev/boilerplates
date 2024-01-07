@@ -1,0 +1,12 @@
+[Unit]
+Description=Vaultwarden Backup Daily Job
+
+[Timer]
+# OnCalendar=daily
+# Every day at 2:05
+OnCalendar=*-*-* 2:05:00
+Persistent=true
+Unit=vaultwarden-backup.service
+
+[Install]
+WantedBy=timers.target

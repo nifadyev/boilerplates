@@ -44,3 +44,11 @@ get-user-ids:
 	id --user - uid
 	id --group - gid
 	store them in variables and write in .env files
+
+init-vaultwarden:
+	# For backups
+	sudo apt install sqlite3
+	# TODO: add env variables example to end of backup/env.conf
+	cp backup/vaultwarden-backup.service ~/.config/systemd/user/vaultwarden-backup.service
+	cp backup/vaultwarden-backup.timer ~/.config/systemd/user/vaultwarden-backup.timer
+	# systemctl --user enable vaultwarden-backup.service

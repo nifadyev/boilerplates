@@ -1,0 +1,13 @@
+[Unit]
+Description=Vaultwarden Backup Script
+Wants=vaultwarden-backup.timer
+
+[Service]
+Type=simple
+EnvironmentFile=<path_to_.conf_file>
+ExecStart=<path_to_server-backup.sh>
+NoNewPrivileges=yes
+ProtectSystem=full
+
+[Install]
+WantedBy=default.target
