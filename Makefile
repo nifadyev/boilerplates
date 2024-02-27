@@ -39,6 +39,7 @@ run-pihole-unbound-wg-easy:
 
 init-backup:
 	touch repo_password.txt
+	chmod +x backup/*.sh
 
 get-user-ids:
 	id --user - uid
