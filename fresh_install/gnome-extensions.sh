@@ -2,6 +2,8 @@
 
 # ? Rename to gnome.sh
 
+# https://extensions.gnome.org/extension/5278/pano/ - alt clipboard manager
+
 ### [] GNOME Settings
 # - [x] Включить WPA3 Personal, если роутер поддерживает (Wi-Fi -> chosen network -> Security -> Security)
 # - [x] Отключить `Hot Corner` (Multitasking -> Hot Corner)
