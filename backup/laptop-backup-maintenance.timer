@@ -1,0 +1,11 @@
+[Unit]
+Description=Weekly Laptop Backup Maintenance Job
+
+[Timer]
+# Every Monday at 15:45
+OnCalendar=Mon 15:45
+Persistent=true
+Unit=laptop-backup-maintenance.service
+
+[Install]
+WantedBy=timers.target

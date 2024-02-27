@@ -1,0 +1,15 @@
+[Unit]
+Description=Laptop Backup Repository Maintenance Script
+Wants=laptop-backup-maintenance.timer
+
+[Service]
+Type=simple
+LoadCredential=backup_repo_password:<path_to_repo_password_txt>
+EnvironmentFile=<path_to_.conf_file>
+ExecStart=/bin/bash -c 'RESTIC_PASSWORD="$(cat ${CREDENTIALS_DIRECTORY}/backup_repo_password)" <laptop-backup-maintenance.sh>'
+User=<user>
+NoNewPrivileges=yes
+ProtectSystem=full
+
+[Install]
+WantedBy=default.target
