@@ -1,10 +1,8 @@
 #!/bin/bash
 
+# ! Do not add quotes around EXCLUDE_PATTERNS otherwise systemd task will fail
 restic --repo "$REPOSITORY_PATH" \
-    backup $EXCLUDE_PATTERNS "$BACKUP_PATTERNS"
-    # backup "$BACKUP_PATTERNS" \
-    # "$EXCLUDE_PATTERNS"
-    
-    # "$EXCLUDE_PATTERNS" --exclude-caches \
-    # disable file scanning for estimation, no need in systemd service
-    # --no-scan
+    backup \
+    "$BACKUP_PATTERNS" \
+    --exclude-caches \
+    $EXCLUDE_PATTERNS
