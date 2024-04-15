@@ -1,0 +1,25 @@
+services:
+
+  gluetun:
+    image: qmcgaw/gluetun
+    container_name: vpn
+    cap_add:
+      - NET_ADMIN
+    env_file:
+      - vpn_openvpn.env
+    ports:
+      - "0.0.0.0:9091:9091/tcp"
+      - 51413:51413/tcp
+      - 51413:51413/udp
+
+  transmission:
+    image: linuxserver/transmission
+    container_name: transmission
+    network_mode: "service:gluetun"
+#    env_file:
+#      - transmission.env
+    volumes:
+      - ${CONFIG_PATH}:/config
+      - ${DOWNLOAD_PATH}:/downloads
+#      - ${MEDIA_PATH}:/media
+    restart: unless-stopped
