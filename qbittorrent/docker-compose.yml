@@ -2,13 +2,20 @@ services:
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:${VERSION}
     container_name: qbittorrent
+    hostname: qbittorrent
     env_file: .env
     volumes:
-      - ${HOME}/service-configs/qbittorrent/config:/config
-      - ${HOME}/usb_drive/Download:/downloads
-      - ${HOME}/usb_drive/media:/media
+      - ${HOME}/boilerplates/qbittorrent/config:/config
+      - ${HOME}/Storage/Movies:/movies
+      - ${HOME}/Storage/Series:/series
+      - ${HOME}/Storage/Downloads:/downloads
     ports:
       - ${CONTAINER_WEBUI_PORT}:${HOST_WEBUI_PORT}
       - ${CONTAINER_TCP_CONNECTION_PORT}:${HOST_TCP_CONNECTION_PORT}
       - ${CONTAINER_UDP_CONNECTION_PORT}:${HOST_UDP_CONNECTION_PORT}/udp
     restart: unless-stopped
+
+networks:
+  default:
+    name: $PROXY_NETWORK
+    external: true
