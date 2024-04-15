@@ -53,3 +53,13 @@ init-vaultwarden:
 	cp backup/vaultwarden-backup.service ~/.config/systemd/user/vaultwarden-backup.service
 	cp backup/vaultwarden-backup.timer ~/.config/systemd/user/vaultwarden-backup.timer
 	# systemctl --user enable vaultwarden-backup.service
+
+init-audiobookshelf:
+	# For rootless usage
+	docker compose build
+	# Comment user in compose.yml
+	docker exec -it audiobookshelf
+	chown node:node -R <podcasts_path>/<audiobooks_path>
+	# Uncomment user in compose.yml
+	docker compose down
+	docker compose up -d

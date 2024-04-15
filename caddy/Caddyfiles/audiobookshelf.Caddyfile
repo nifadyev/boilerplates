@@ -1,0 +1,4 @@
+bookshelf.{$MAIN_DOMAIN} {
+        encode gzip zstd
+        reverse_proxy audiobookshelf
+}
