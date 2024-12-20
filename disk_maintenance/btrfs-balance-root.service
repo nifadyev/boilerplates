@@ -1,0 +1,12 @@
+[Unit]
+Description=BTRFS filesystem balance / Script
+Wants=btrfs-balance-root.timer
+
+[Service]
+Type=simple
+ExecStart=btrfs balance start /
+NoNewPrivileges=yes
+ProtectSystem=full
+
+[Install]
+WantedBy=default.target
