@@ -1,0 +1,11 @@
+[Unit]
+Description=Docker Cleanup Weekly Job
+
+[Timer]
+# Every week at Monday 14:30
+OnCalendar=Mon *-*-* 14:30:00
+Persistent=true
+Unit=docker-cleanup.service
+
+[Install]
+WantedBy=timers.target

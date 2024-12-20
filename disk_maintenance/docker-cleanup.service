@@ -1,0 +1,12 @@
+[Unit]
+Description=Docker Cleanup Script
+Wants=docker-cleanup.timer
+
+[Service]
+Type=simple
+ExecStart=docker system prune
+NoNewPrivileges=yes
+ProtectSystem=full
+
+[Install]
+WantedBy=default.target
