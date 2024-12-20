@@ -1,0 +1,11 @@
+[Unit]
+Description=BTRFS balance /home Monthly Job
+
+[Timer]
+# Every month at 16:00
+OnCalendar=*-*-01 16:00:00
+Persistent=true
+Unit=btrfs-balance-home.service
+
+[Install]
+WantedBy=timers.target

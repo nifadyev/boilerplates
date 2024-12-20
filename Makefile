@@ -63,3 +63,9 @@ init-audiobookshelf:
 	# Uncomment user in compose.yml
 	docker compose down
 	docker compose up -d
+
+setup-systemd-services:
+	sudo cp disk_maintenance/btrfs-balance-home.service /etc/systemd/system/
+	sudo cp disk_maintenance/btrfs-balance-home.timer /etc/systemd/system/
+	systemctl enable btrfs-balance-home.service
+	systemctl start btrfs-balance-home.timer
