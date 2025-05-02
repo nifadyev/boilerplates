@@ -18,6 +18,9 @@ install-docker:
 init-asusctl:
 	./asusctl.sh
 
+init-terminal:
+	./terminal.sh
+
 setup-fn-keys-bt-keyboard:
 	./logitech_k380.sh
 

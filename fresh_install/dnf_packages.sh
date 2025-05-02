@@ -23,6 +23,8 @@ echo 'deltarpm=true' | sudo tee -a /etc/dnf/dnf.conf
 # bleachbit - System cleaner
 # Steam
 # Restic - old version in rpm, Backup tool
+# Kitty - Terminal, might not be the actual version, use installation script from repo for the latest version
+# zsh - alternative shell
 
 sudo dnf install \
     vlc \
@@ -40,4 +42,6 @@ sudo dnf install \
     yt-dlp \
     bleachbit \
     steam \
-    restic
+    restic \
+    kitty \
+    zsh
