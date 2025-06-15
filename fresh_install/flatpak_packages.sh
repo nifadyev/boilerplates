@@ -4,7 +4,4 @@
     # flathub io.github.slgobinath.SafeEyes \
     # flathub net.ankiweb.Anki
 
-flatpak install \
-    io.github.slgobinath.SafeEyes \
-    com.github.iwalton3.jellyfin-media-player \
-    flathub net.ankiweb.Anki
+flatpak install flathub net.ankiweb.Anki
