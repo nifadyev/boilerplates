@@ -3,3 +3,4 @@ env.conf
 *.txt
 config/
 metadata/
+nvim/lazy-lock.json
