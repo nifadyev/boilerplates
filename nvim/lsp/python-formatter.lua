@@ -1,4 +1,51 @@
 return {
     cmd = { 'ruff', 'server' },
     filetypes = { 'python' },
+    -- init_options = {
+        -- settings = {
+            -- lineLength = 100,       -- Example setting to set max line length
+            -- lint = {
+            --     select = { "ALL" }, -- Enable selected linting rules
+            --     ignore = {
+            --         "COM812",       -- Trailing comma missing
+            --         "D103",         -- Missing docstring in public function
+            --         "D203",         -- incorrect-blank-line-before-class
+            --         "D213",         -- multi-line-summary-second-line
+            --         "FA102",        --  Missing `from __future__ import annotations`, but uses PEP 604 union
+            --
+            --     },
+            -- },
+            -- unsafe_fixes = true,
+            -- format = {
+            --     preview = true, -- Enable formatter preview
+            -- },
+        -- }
+   -- },
+    -- Did not work
+    -- on_attach = function(client, bufnr)
+    --     -- You can add keymaps here for formatting and organizing imports
+    --     local bufopts = { noremap = true, silent = true, buffer = bufnr }
+    --
+    --     -- Format buffer (runs ruff format/fix)
+    --     vim.keymap.set('n', '<leader>rf', function()
+    --         vim.lsp.buf.format({ async = true })
+    --     end, bufopts)
+    --
+    --     -- Organize imports via code action (ruff supports code actions like organize imports)
+    --     vim.keymap.set('n', '<leader>ri', function()
+    --         local params = vim.lsp.util.make_range_params()
+    --         params.context = { only = { "source.organizeImports" } }
+    --         local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 1000)
+    --
+    --         for _, res in pairs(result or {}) do
+    --             for _, r in pairs(res.result or {}) do
+    --                 if r.edit then
+    --                     vim.lsp.util.apply_workspace_edit(r.edit)
+    --                 else
+    --                     vim.lsp.buf.execute_command(r.command)
+    --                 end
+    --             end
+    --         end
+    --     end, bufopts)
+    -- end
 }

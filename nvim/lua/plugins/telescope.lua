@@ -1,4 +1,7 @@
 return {
+  -- {
+  --   "nvim-telescope/telescope-ui-select.nvim",
+  -- },
   {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.8",
@@ -9,6 +12,11 @@ return {
             layout_strategy = 'vertical',
         },
         file_ignore_patterns = { ".venv", "venv" },
+        -- extensions = {
+        --   ["ui-select"] = {
+        --     require("telescope.themes").get_dropdown({}),
+        --   },
+        -- },
       })
       -- local builtin = require("telescope.builtin")
       -- require("telescope").load_extension("ui-select")

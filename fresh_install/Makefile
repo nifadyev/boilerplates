@@ -1,10 +1,32 @@
 # TODO: run chmod +x on init and revoke after it
 # TODO: reorder (because some commands depend on each other)
 
-# init:
-# 	make grant-exec-permission
-# 	# inits and installs
-# 	make revoke-exec-permission
+init:
+	make grant-exec-permission
+	# inits and installs
+	make install-docker
+	make arrow_keys
+	make ntfs_automount
+	make deb-packages
+	make change_default_dirs_path
+	make setup-app-images
+	make setup-terminal
+	make revoke-exec-permission
+
+init-debian:
+	make grant-exec-permission
+	# To store history from the beginning
+	make setup-terminal
+	make mount-storage-partition
+	make change-default-dirs-path
+	# Setup apt repos if none
+	make install-deb-packages
+	make install-docker
+	make arrow_keys
+	make setup-app-images
+	# make setup-git
+	# make remove-irrelevant - kde apps, build deps
+	make revoke-exec-permission
 
 grant-exec-permission:
 	chmod +x *.sh
@@ -43,3 +65,6 @@ setup-daily-backup:
 	./backup_restic_yadisk.sh
 
 # init-git:
+
+block-urls-systemwide:
+	echo "another-it.ru" >> /etc/hosts
